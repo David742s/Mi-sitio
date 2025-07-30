@@ -1,46 +1,115 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+/* Reset básico */
+* {
   margin: 0;
   padding: 0;
-  text-align: center;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
   color: #333;
+  line-height: 1.6;
+  padding: 20px;
 }
 
+/* Encabezado */
 header {
-  background-color: #222;
-  color: #fff;
-  padding: 2rem;
+  text-align: center;
+  padding: 30px 10px;
+  background-color: #0a74da;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 30px;
 }
 
-main {
-  padding: 2rem;
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
+header p {
+  font-size: 1.1rem;
+}
+
+/* Secciones */
 section {
-  margin-bottom: 2rem;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.boton, .iconos a {
+/* Redes sociales */
+#redes a {
   display: inline-block;
-  margin: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #007BFF;
-  color: #fff;
+  margin: 10px 10px 0 0;
   text-decoration: none;
-  border-radius: 8px;
-  transition: background-color 0.3s;
+  color: #0a74da;
+  font-weight: bold;
+  border: 2px solid #0a74da;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
 }
 
-.boton:hover, .iconos a:hover {
-  background-color: #0056b3;
+#redes a:hover {
+  background-color: #0a74da;
+  color: white;
 }
 
-.iconos i {
-  margin-right: 0.5rem;
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
 }
 
-footer {
-  background-color: #eee;
-  padding: 1rem;
+form label {
+  margin-top: 10px;
+  font-weight: bold;
 }
+
+form input,
+form textarea {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+form button {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #0a74da;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+form button:hover {
+  background-color: #094c9e;
+}
+
+/* Mensaje de confirmación */
+#mensaje-confirmacion {
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  form input,
+  form textarea {
+    font-size: 0.95rem;
+  }
+}
+
