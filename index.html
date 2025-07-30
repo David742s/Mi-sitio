@@ -2,44 +2,80 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mi Sitio Personal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Sitio Web</title>
   <link rel="stylesheet" href="css/style.css" />
-  <script src="https://kit.fontawesome.com/a2e0e9e56b.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <h1>Bienvenidos a mi sitio</h1>
-    <p>Gracias por visitar mi pagina personal.</p>
+    <h1>Bienvenid@ a mi sitio</h1>
+    <p>Hola, este es mi sitio web personal.</p>
   </header>
 
-  <main>
-    <section class="contacto">
-      <h2>Contacto</h2>
-      <p>Podes escribirme a:</p>
-      <a href="mailto:Vendedora2426@gmail.com" class="boton">Enviar mail</a>
-    </section>
+  <section id="redes">
+    <h2>Redes Sociales</h2>
+    <a href="https://www.instagram.com/77_david_77_/" target="_blank">Instagram</a><br />
+    <a href="https://www.facebook.com/share/16fcxUdyPx/" target="_blank">Facebook</a><br />
+    <a href="https://wa.me/5491158321509" target="_blank">WhatsApp</a>
+  </section>
 
-    <section class="redes">
-      <h2>Mis Redes Sociales</h2>
-      <div class="iconos">
-        <a href="https://www.instagram.com/77_david_77_/" target="_blank">
-          <i class="fab fa-instagram"></i> Instagram
-        </a>
-        <a href="https://www.facebook.com/david.fernandez.935165/" target="_blank">
-          <i class="fab fa-facebook"></i> Facebook
-        </a>
-        <a href="https://wa.me/5491158321509" target="_blank">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-      </div>
-    </section>
-  </main>
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form
+      id="form-contacto"
+      action="https://formsubmit.co/ajax/Vendedora2426@gmail.com"
+      method="POST"
+    >
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
 
-  <footer>
-    <p>&copy; 2025 David Fernandez</p>
-  </footer>
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" name="name" required />
 
-  <script src="js/script.js"></script>
+      <label for="email">Correo:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Mensaje:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <p
+      id="mensaje-confirmacion"
+      style="display: none; color: green; margin-top: 10px"
+    >
+      ✅ ¡Gracias por tu mensaje! Te responderemos pronto.
+    </p>
+  </section>
+
+  <script>
+    const form = document.getElementById("form-contacto");
+    const mensaje = document.getElementById("mensaje-confirmacion");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const datos = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: datos,
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            form.reset();
+            mensaje.style.display = "block";
+            setTimeout(() => (mensaje.style.display = "none"), 5000);
+          }
+        })
+        .catch((error) => {
+          alert("Ocurrió un error al enviar el mensaje.");
+        });
+    });
+  </script>
 </body>
 </html>
