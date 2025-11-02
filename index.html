@@ -49,21 +49,29 @@
     </p>
   </section>
 
+  <!-- ================= Chat Simulado ================= -->
+  <div id="chat-wrapper-sim">
+    <div class="chat-header-sim">💬 Simulador de Chat</div>
+    <div id="chat-box-sim" class="chat-box-sim"></div>
+    <div class="chat-input-sim">
+      <input id="user-input-sim" type="text" placeholder="Escribí tu mensaje..." />
+      <button id="send-btn-sim">Enviar</button>
+    </div>
+  </div>
+
+  <!-- ================= JS ================= -->
   <script>
+    // Formulario de contacto
     const form = document.getElementById("form-contacto");
     const mensaje = document.getElementById("mensaje-confirmacion");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
       const datos = new FormData(form);
-
       fetch(form.action, {
         method: "POST",
         body: datos,
-        headers: {
-          Accept: "application/json",
-        },
+        headers: { Accept: "application/json" },
       })
         .then((response) => {
           if (response.ok) {
@@ -72,13 +80,17 @@
             setTimeout(() => (mensaje.style.display = "none"), 5000);
           }
         })
-        .catch((error) => {
+        .catch(() => {
           alert("Ocurrió un error al enviar el mensaje.");
         });
     });
   </script>
+
+  <!-- Script del chat simulado -->
+  <script src="script-chat-sim.js"></script>
 </body>
 </html>
+
 
 
 
