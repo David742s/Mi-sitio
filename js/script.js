@@ -1,10 +1,12 @@
 // Podés agregar funcionalidades futuras aquí
 console.log("Sitio cargado correctamente");
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
-const sendBtn = document.getElementById("send-btn");
+// Referencias a elementos del chat
+const chatBoxSim = document.getElementById("chat-box-sim");
+const userInputSim = document.getElementById("user-input-sim");
+const sendBtnSim = document.getElementById("send-btn-sim");
 
-const respuestas = {
+// Respuestas simuladas
+const respuestasSim = {
   hola: "¡Hola! 👋 Soy tu asistente simulado. ¿En qué puedo ayudarte?",
   productos: "Vendemos artículos tecnológicos, desde notebooks hasta periféricos gamer.",
   envio: "Hacemos envíos a todo el país con entrega en 48 horas. 🚚",
@@ -14,69 +16,71 @@ const respuestas = {
 };
 
 // Agrega mensajes al chat
-function agregarMensaje(texto, clase) {
+function agregarMensajeSim(texto, clase) {
   const msg = document.createElement("div");
-  msg.classList.add("message", clase);
+  msg.classList.add("message-sim", clase);
   msg.innerText = texto;
-  chatBox.appendChild(msg);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  chatBoxSim.appendChild(msg);
+  chatBoxSim.scrollTop = chatBoxSim.scrollHeight;
 }
 
 // Efecto de escritura tipo ChatGPT
-function escribirGradualmente(texto, clase) {
+function escribirGradualmenteSim(texto, clase) {
   const msg = document.createElement("div");
-  msg.classList.add("message", clase);
-  chatBox.appendChild(msg);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  msg.classList.add("message-sim", clase);
+  chatBoxSim.appendChild(msg);
+  chatBoxSim.scrollTop = chatBoxSim.scrollHeight;
 
   let i = 0;
   const interval = setInterval(() => {
     msg.innerText += texto[i];
     i++;
     if (i >= texto.length) clearInterval(interval);
-    chatBox.scrollTop = chatBox.scrollHeight;
+    chatBoxSim.scrollTop = chatBoxSim.scrollHeight;
   }, 25);
 }
 
 // Muestra animación de “Generando respuesta…”
-function mostrarTyping() {
+function mostrarTypingSim() {
   const typing = document.createElement("div");
-  typing.classList.add("typing", "bot");
+  typing.classList.add("typing-sim", "bot-sim");
   typing.innerText = "💭 Generando respuesta";
-  chatBox.appendChild(typing);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  chatBoxSim.appendChild(typing);
+  chatBoxSim.scrollTop = chatBoxSim.scrollHeight;
   return typing;
 }
 
 // Procesa la respuesta simulada
-function responder(mensajeUsuario) {
+function responderSim(mensajeUsuario) {
   const lower = mensajeUsuario.toLowerCase();
-  let respuesta = respuestas.default;
-  for (let key in respuestas) {
+  let respuesta = respuestasSim.default;
+  for (let key in respuestasSim) {
     if (lower.includes(key)) {
-      respuesta = respuestas[key];
+      respuesta = respuestasSim[key];
       break;
     }
   }
 
-  const typingIndicator = mostrarTyping();
+  const typingIndicator = mostrarTypingSim();
   setTimeout(() => {
     typingIndicator.remove();
-    escribirGradualmente(respuesta, "bot");
+    escribirGradualmenteSim(respuesta, "bot-sim");
   }, 1000 + Math.random() * 800);
 }
 
-sendBtn.addEventListener("click", () => {
-  const mensaje = userInput.value.trim();
+// Eventos
+sendBtnSim.addEventListener("click", () => {
+  const mensaje = userInputSim.value.trim();
   if (mensaje) {
-    agregarMensaje(mensaje, "user");
-    responder(mensaje);
-    userInput.value = "";
+    agregarMensajeSim(mensaje, "user-sim");
+    responderSim(mensaje);
+    userInputSim.value = "";
   }
 });
 
-userInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") sendBtn.click();
+userInputSim.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") sendBtnSim.click();
 });
+
 
 
